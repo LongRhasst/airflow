@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  airflow-init:
+    image: apache/airflow:2.11.0-python3.10
+    depends_on:
+      - mysql
+    env_file:
+      - ./.env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: mysql+mysqlconnector://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
+    user: "${AIRFLOW_UID}:0"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./scripts:/opt/airflow/scripts
+      - ./plugins:/opt/airflow/plugins
+      - ./foundation:/opt/airflow/foundation # Ensure foundation is mounted for airflow-init if it writes here
+      - ./trusted:/opt/airflow/trusted     # Ensure trusted is mounted for airflow-init if it writes here
+    entrypoint: >
+      bash -c "airflow db init &&
+               airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com"
+
+  webserver:
+    image: apache/airflow:2.11.0-python3.10
+    depends_on:
+      - mysql
+      - airflow-init
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - "8080:8080"
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: mysql+mysqlconnector://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
+    user: "${AIRFLOW_UID}:0"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./foundation:/opt/airflow/foundation
+      - ./trusted:/opt/airflow/trusted
+    command: webserver
+
+  scheduler:
+    image: apache/airflow:2.11.0-python3.10
+    depends_on:
+      - webserver # Scheduler usually depends on webserver or at least airflow-init
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: mysql+mysqlconnector://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
+    user: "${AIRFLOW_UID}:0"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./foundation:/opt/airflow/foundation
+      - ./trusted:/opt/airflow/trusted # Removed duplicate with trailing slash
+    command: scheduler
+
+volumes:
+  mysql_data:

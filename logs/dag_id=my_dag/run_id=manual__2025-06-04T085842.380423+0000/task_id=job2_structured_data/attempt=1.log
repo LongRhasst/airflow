@@ -1,0 +1,26 @@
+[2025-06-04T08:58:49.859+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-04T08:58:50.080+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_dag.job2_structured_data manual__2025-06-04T08:58:42.380423+00:00 [queued]>
+[2025-06-04T08:58:50.097+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_dag.job2_structured_data manual__2025-06-04T08:58:42.380423+00:00 [queued]>
+[2025-06-04T08:58:50.099+0000] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2025-06-04T08:58:50.129+0000] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): job2_structured_data> on 2025-06-04 08:58:42.380423+00:00
+[2025-06-04T08:58:50.145+0000] {standard_task_runner.py:72} INFO - Started process 756 to run task
+[2025-06-04T08:58:50.152+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'job2_structured_data', 'manual__2025-06-04T08:58:42.380423+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpbbtgrd52']
+[2025-06-04T08:58:50.156+0000] {standard_task_runner.py:105} INFO - Job 21: Subtask job2_structured_data
+[2025-06-04T08:58:50.234+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-04T08:58:50.334+0000] {task_command.py:467} INFO - Running <TaskInstance: my_dag.job2_structured_data manual__2025-06-04T08:58:42.380423+00:00 [running]> on host 44675f35d09b
+[2025-06-04T08:58:50.513+0000] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_dag' AIRFLOW_CTX_TASK_ID='job2_structured_data' AIRFLOW_CTX_EXECUTION_DATE='2025-06-04T08:58:42.380423+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-04T08:58:42.380423+00:00'
+[2025-06-04T08:58:50.517+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-06-04T08:58:50.518+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-06-04T08:58:50.519+0000] {logging_mixin.py:190} INFO - Current task name:job2_structured_data state:running start_date:2025-06-04 08:58:50.082340+00:00
+[2025-06-04T08:58:50.520+0000] {logging_mixin.py:190} INFO - Dag name:my_dag and current dag run status:running
+[2025-06-04T08:58:50.521+0000] {taskinstance.py:740} INFO - ::endgroup::
+[2025-06-04T08:58:50.634+0000] {python.py:240} INFO - Done. Returned value was: Error: Cannot save file into a non-existent directory: '/opt/***/foundation'
+[2025-06-04T08:58:50.725+0000] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2025-06-04T08:58:50.726+0000] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=my_dag, task_id=job2_structured_data, run_id=manual__2025-06-04T08:58:42.380423+00:00, execution_date=20250604T085842, start_date=20250604T085850, end_date=20250604T085850
+[2025-06-04T08:58:50.826+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-06-04T08:58:50.828+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-06-04T08:58:50.830+0000] {logging_mixin.py:190} INFO - Dag name:my_dag queued_at:2025-06-04 08:58:42.403780+00:00
+[2025-06-04T08:58:50.831+0000] {logging_mixin.py:190} INFO - Task hostname:44675f35d09b operator:PythonOperator
+[2025-06-04T08:58:50.888+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-04T08:58:50.951+0000] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-04T08:58:50.961+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

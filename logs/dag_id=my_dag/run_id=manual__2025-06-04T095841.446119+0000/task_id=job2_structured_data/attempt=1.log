@@ -1,0 +1,25 @@
+[2025-06-04T09:58:49.465+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-04T09:58:49.735+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_dag.job2_structured_data manual__2025-06-04T09:58:41.446119+00:00 [queued]>
+[2025-06-04T09:58:49.751+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_dag.job2_structured_data manual__2025-06-04T09:58:41.446119+00:00 [queued]>
+[2025-06-04T09:58:49.753+0000] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2025-06-04T09:58:49.782+0000] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): job2_structured_data> on 2025-06-04 09:58:41.446119+00:00
+[2025-06-04T09:58:49.804+0000] {standard_task_runner.py:72} INFO - Started process 28253 to run task
+[2025-06-04T09:58:49.810+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'job2_structured_data', 'manual__2025-06-04T09:58:41.446119+00:00', '--job-id', '38', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpfje4iv7t']
+[2025-06-04T09:58:49.812+0000] {standard_task_runner.py:105} INFO - Job 38: Subtask job2_structured_data
+[2025-06-04T09:58:49.890+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-04T09:58:50.003+0000] {task_command.py:467} INFO - Running <TaskInstance: my_dag.job2_structured_data manual__2025-06-04T09:58:41.446119+00:00 [running]> on host 44675f35d09b
+[2025-06-04T09:58:50.203+0000] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_dag' AIRFLOW_CTX_TASK_ID='job2_structured_data' AIRFLOW_CTX_EXECUTION_DATE='2025-06-04T09:58:41.446119+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-04T09:58:41.446119+00:00'
+[2025-06-04T09:58:50.207+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-06-04T09:58:50.208+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-06-04T09:58:50.209+0000] {logging_mixin.py:190} INFO - Current task name:job2_structured_data state:running start_date:2025-06-04 09:58:49.737420+00:00
+[2025-06-04T09:58:50.211+0000] {logging_mixin.py:190} INFO - Dag name:my_dag and current dag run status:running
+[2025-06-04T09:58:50.212+0000] {taskinstance.py:740} INFO - ::endgroup::
+[2025-06-04T09:58:50.397+0000] {python.py:240} INFO - Done. Returned value was: Data written to /opt/***/foundation/restcountries.csv
+[2025-06-04T09:58:50.504+0000] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2025-06-04T09:58:50.506+0000] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=my_dag, task_id=job2_structured_data, run_id=manual__2025-06-04T09:58:41.446119+00:00, execution_date=20250604T095841, start_date=20250604T095849, end_date=20250604T095850
+[2025-06-04T09:58:50.626+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-06-04T09:58:50.629+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-06-04T09:58:50.632+0000] {logging_mixin.py:190} INFO - Dag name:my_dag queued_at:2025-06-04 09:58:41.493160+00:00
+[2025-06-04T09:58:50.633+0000] {logging_mixin.py:190} INFO - Task hostname:44675f35d09b operator:PythonOperator
+[2025-06-04T09:58:50.667+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-04T09:58:50.724+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,7 @@
+pyspark==3.5.5
+#google-re2
+confluent-kafka==2.10.0
+apache-airflow==2.7.2
+kafka
+pandas
+sqlalchemy
