@@ -1,0 +1,102 @@
+[2025-06-06T02:10:56.955+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-06T02:10:57.047+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_dag.job2_structured_data scheduled__2025-06-04T08:00:00+00:00 [queued]>
+[2025-06-06T02:10:57.067+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_dag.job2_structured_data scheduled__2025-06-04T08:00:00+00:00 [queued]>
+[2025-06-06T02:10:57.069+0000] {taskinstance.py:2884} INFO - Starting attempt 2 of 2
+[2025-06-06T02:10:57.102+0000] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): job2_structured_data> on 2025-06-04 08:00:00+00:00
+[2025-06-06T02:10:57.123+0000] {standard_task_runner.py:72} INFO - Started process 3186 to run task
+[2025-06-06T02:10:57.137+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'job2_structured_data', 'scheduled__2025-06-04T08:00:00+00:00', '--job-id', '58', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpvydrtksl']
+[2025-06-06T02:10:57.143+0000] {standard_task_runner.py:105} INFO - Job 58: Subtask job2_structured_data
+[2025-06-06T02:10:57.261+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-06T02:10:57.458+0000] {task_command.py:467} INFO - Running <TaskInstance: my_dag.job2_structured_data scheduled__2025-06-04T08:00:00+00:00 [running]> on host d27817f09629
+[2025-06-06T02:10:57.462+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-06T02:10:57.827+0000] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_dag' AIRFLOW_CTX_TASK_ID='job2_structured_data' AIRFLOW_CTX_EXECUTION_DATE='2025-06-04T08:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-04T08:00:00+00:00'
+[2025-06-06T02:10:57.832+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-06-06T02:10:57.834+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-06-06T02:10:57.836+0000] {logging_mixin.py:190} INFO - Current task name:job2_structured_data state:running start_date:2025-06-06 02:10:57.048986+00:00
+[2025-06-06T02:10:57.838+0000] {logging_mixin.py:190} INFO - Dag name:my_dag and current dag run status:running
+[2025-06-06T02:10:57.840+0000] {taskinstance.py:740} INFO - ::endgroup::
+[2025-06-06T02:10:57.917+0000] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/airflow/scripts/structured.py", line 11, in structured_data
+    df = pd.DataFrame(data)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/frame.py", line 733, in __init__
+    mgr = dict_to_mgr(data, index, columns, dtype=dtype, copy=copy, typ=manager)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 503, in dict_to_mgr
+    return arrays_to_mgr(arrays, columns, index, dtype=dtype, typ=typ, consolidate=copy)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 114, in arrays_to_mgr
+    index = _extract_index(arrays)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 667, in _extract_index
+    raise ValueError("If using all scalar values, you must pass an index")
+ValueError: If using all scalar values, you must pass an index
+[2025-06-06T02:10:58.016+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2025-06-06T02:10:58.018+0000] {logging_mixin.py:190} INFO - Task start:2025-06-06 02:10:57.048986+00:00 end:2025-06-06 02:10:58.015530+00:00 duration:0.966544
+[2025-06-06T02:10:58.020+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): job2_structured_data> dag:<DAG: my_dag> dagrun:<DagRun my_dag @ 2025-06-04 08:00:00+00:00: scheduled__2025-06-04T08:00:00+00:00, state:running, queued_at: 2025-06-06 02:05:41.680680+00:00. externally triggered: False>
+[2025-06-06T02:10:58.023+0000] {logging_mixin.py:190} INFO - Failure caused by If using all scalar values, you must pass an index
+[2025-06-06T02:10:58.025+0000] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=my_dag, task_id=job2_structured_data, run_id=scheduled__2025-06-04T08:00:00+00:00, execution_date=20250604T080000, start_date=20250606T021057, end_date=20250606T021058
+[2025-06-06T02:10:58.297+0000] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2025-06-06T02:10:58.300+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 58 for task job2_structured_data (If using all scalar values, you must pass an index; 3186)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/airflow/scripts/structured.py", line 11, in structured_data
+    df = pd.DataFrame(data)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/frame.py", line 733, in __init__
+    mgr = dict_to_mgr(data, index, columns, dtype=dtype, copy=copy, typ=manager)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 503, in dict_to_mgr
+    return arrays_to_mgr(arrays, columns, index, dtype=dtype, typ=typ, consolidate=copy)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 114, in arrays_to_mgr
+    index = _extract_index(arrays)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 667, in _extract_index
+    raise ValueError("If using all scalar values, you must pass an index")
+ValueError: If using all scalar values, you must pass an index
+[2025-06-06T02:10:58.358+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-06-06T02:10:58.485+0000] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-06T02:10:58.547+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

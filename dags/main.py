@@ -30,7 +30,7 @@ with DAG(
     t1 = PythonOperator(
         task_id='job1_get_data',
         python_callable=get_data,
-        op_kwargs={'url': 'https://restcountries.com/v3.1/all'}
+        op_kwargs={'url': 'https://restcountries.com/v3.1/independent?status=true'}
     )
 
     t2 = PythonOperator(

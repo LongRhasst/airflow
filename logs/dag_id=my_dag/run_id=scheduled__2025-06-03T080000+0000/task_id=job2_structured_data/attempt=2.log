@@ -1,0 +1,27 @@
+[2025-06-06T02:28:56.793+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-06T02:28:56.856+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_dag.job2_structured_data scheduled__2025-06-03T08:00:00+00:00 [queued]>
+[2025-06-06T02:28:56.874+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_dag.job2_structured_data scheduled__2025-06-03T08:00:00+00:00 [queued]>
+[2025-06-06T02:28:56.878+0000] {taskinstance.py:2884} INFO - Starting attempt 2 of 2
+[2025-06-06T02:28:56.911+0000] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): job2_structured_data> on 2025-06-03 08:00:00+00:00
+[2025-06-06T02:28:56.927+0000] {standard_task_runner.py:72} INFO - Started process 3709 to run task
+[2025-06-06T02:28:56.933+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'job2_structured_data', 'scheduled__2025-06-03T08:00:00+00:00', '--job-id', '73', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpne8toov1']
+[2025-06-06T02:28:56.936+0000] {standard_task_runner.py:105} INFO - Job 73: Subtask job2_structured_data
+[2025-06-06T02:28:57.026+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-06T02:28:57.145+0000] {task_command.py:467} INFO - Running <TaskInstance: my_dag.job2_structured_data scheduled__2025-06-03T08:00:00+00:00 [running]> on host acb3199ed998
+[2025-06-06T02:28:57.148+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-06T02:28:57.347+0000] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_dag' AIRFLOW_CTX_TASK_ID='job2_structured_data' AIRFLOW_CTX_EXECUTION_DATE='2025-06-03T08:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-03T08:00:00+00:00'
+[2025-06-06T02:28:57.351+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-06-06T02:28:57.352+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-06-06T02:28:57.354+0000] {logging_mixin.py:190} INFO - Current task name:job2_structured_data state:running start_date:2025-06-06 02:28:56.859054+00:00
+[2025-06-06T02:28:57.356+0000] {logging_mixin.py:190} INFO - Dag name:my_dag and current dag run status:running
+[2025-06-06T02:28:57.357+0000] {taskinstance.py:740} INFO - ::endgroup::
+[2025-06-06T02:28:57.415+0000] {python.py:240} INFO - Done. Returned value was: Data written to /opt/***/foundation/restcountries.csv
+[2025-06-06T02:28:57.517+0000] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2025-06-06T02:28:57.519+0000] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=my_dag, task_id=job2_structured_data, run_id=scheduled__2025-06-03T08:00:00+00:00, execution_date=20250603T080000, start_date=20250606T022856, end_date=20250606T022857
+[2025-06-06T02:28:57.642+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-06-06T02:28:57.645+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-06-06T02:28:57.647+0000] {logging_mixin.py:190} INFO - Dag name:my_dag queued_at:2025-06-06 02:23:47.733118+00:00
+[2025-06-06T02:28:57.648+0000] {logging_mixin.py:190} INFO - Task hostname:acb3199ed998 operator:PythonOperator
+[2025-06-06T02:28:57.671+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-06T02:28:57.746+0000] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-06T02:28:57.758+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

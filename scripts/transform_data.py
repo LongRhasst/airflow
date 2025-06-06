@@ -62,9 +62,10 @@ class CURRENCIES:
 
     def process_capitalAndAltSpellings(self):
         if 'thu do' in self.df.columns:
-            self.df['thu do'] = self.df['thu do'].apply(list_to_pipe_string)
+            self.df['thu do'] = self.df['thu do'].apply(lambda cell: " | ".join(map(str, cell)) if isinstance(cell, list) else cell)
         if 'cach viet thay the' in self.df.columns:
-            self.df['cach viet thay the'] = self.df['cach viet thay the'].apply(list_to_pipe_string)
+            self.df['cach viet thay the'] = self.df['cach viet thay the'].apply(lambda cell: " | ".join(map(str, cell)) if isinstance(cell, list) else cell)
+
 
     def process_latlng(self):
         if 'thong tin thu do' in self.df.columns:
@@ -88,22 +89,18 @@ class CURRENCIES:
 
     def process_translations(self):
         if 'ban dich' in self.df.columns:
-            def get_vietnamese_translation(trans_dict):
-                if isinstance(trans_dict, dict) and 'vie' in trans_dict:
-                    vie_trans = trans_dict['vie']
-                    if isinstance(vie_trans, dict):
-                        return vie_trans.get('common', None)
-                return None
-            self.df['ten_tieng_viet_dich'] = self.df['ban dich'].apply(get_vietnamese_translation)
+            df_expended = self.df['ban dich'].apply(pd.Series)
+            self.df = pd.concat([self.df.drop('ban dich', axis=1), df_expended], axis=1)
+            self.df
 
     def process_maps(self):
-        # Cần cột 'maps' (tên gốc, không đổi)
         if 'maps' in self.df.columns:
             def extract_googleMaps(map_dict):
                 if isinstance(map_dict, dict):
                     return map_dict.get('googleMaps', None)
                 return None
             self.df['google_maps_url'] = self.df['maps'].apply(extract_googleMaps)
+            self.df.drop(columns=['maps'], inplace=True)
 
     def process_timezone(self):
         if 'mui gio' in self.df.columns:
@@ -112,14 +109,16 @@ class CURRENCIES:
                     return timezones_list[0]
                 return None
             self.df['mui_gio_dau_tien'] = self.df['mui gio'].apply(extract_first_timezone)
+            self.df.drop(columns=['mui gio'], inplace=True)
 
     def process_flags(self):
         if 'co' in self.df.columns:
             def extract_svg_image(flag_dict):
                 if isinstance(flag_dict, dict):
-                    return flag_dict.get('svg', None) 
+                    return flag_dict.get('svg', None)
                 return None
             self.df['co_svg_url'] = self.df['co'].apply(extract_svg_image)
+            self.df.drop(columns=['co'], inplace=True)
 
     def process_create_country_id(self):
         if 'ten' in self.df.columns:

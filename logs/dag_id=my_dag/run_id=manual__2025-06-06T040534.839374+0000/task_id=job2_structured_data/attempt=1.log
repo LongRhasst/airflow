@@ -1,0 +1,34 @@
+[2025-06-06T04:05:44.536+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-06T04:05:44.599+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_dag.job2_structured_data manual__2025-06-06T04:05:34.839374+00:00 [queued]>
+[2025-06-06T04:05:44.616+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_dag.job2_structured_data manual__2025-06-06T04:05:34.839374+00:00 [queued]>
+[2025-06-06T04:05:44.617+0000] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2025-06-06T04:05:44.646+0000] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): job2_structured_data> on 2025-06-06 04:05:34.839374+00:00
+[2025-06-06T04:05:44.662+0000] {standard_task_runner.py:72} INFO - Started process 28934 to run task
+[2025-06-06T04:05:44.669+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'job2_structured_data', 'manual__2025-06-06T04:05:34.839374+00:00', '--job-id', '125', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpsv5tin0u']
+[2025-06-06T04:05:44.673+0000] {standard_task_runner.py:105} INFO - Job 125: Subtask job2_structured_data
+[2025-06-06T04:05:44.753+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-06T04:05:44.868+0000] {task_command.py:467} INFO - Running <TaskInstance: my_dag.job2_structured_data manual__2025-06-06T04:05:34.839374+00:00 [running]> on host ae7446f54277
+[2025-06-06T04:05:45.079+0000] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_dag' AIRFLOW_CTX_TASK_ID='job2_structured_data' AIRFLOW_CTX_EXECUTION_DATE='2025-06-06T04:05:34.839374+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-06T04:05:34.839374+00:00'
+[2025-06-06T04:05:45.083+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-06-06T04:05:45.084+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-06-06T04:05:45.085+0000] {logging_mixin.py:190} INFO - Current task name:job2_structured_data state:running start_date:2025-06-06 04:05:44.601405+00:00
+[2025-06-06T04:05:45.087+0000] {logging_mixin.py:190} INFO - Dag name:my_dag and current dag run status:running
+[2025-06-06T04:05:45.088+0000] {taskinstance.py:740} INFO - ::endgroup::
+[2025-06-06T04:05:45.263+0000] {logging_mixin.py:190} INFO -                                                 name  ...                                  postalCode
+0  {'common': 'Togo', 'official': 'Togolese Repub...  ...             {'format': None, 'regex': None}
+1  {'common': 'Georgia', 'official': 'Georgia', '...  ...    {'format': '####', 'regex': '^(\d{4})$'}
+2  {'common': 'Vanuatu', 'official': 'Republic of...  ...             {'format': None, 'regex': None}
+3  {'common': 'Kyrgyzstan', 'official': 'Kyrgyz R...  ...  {'format': '######', 'regex': '^(\d{6})$'}
+4  {'common': 'Niger', 'official': 'Republic of N...  ...    {'format': '####', 'regex': '^(\d{4})$'}
+
+[5 rows x 35 columns]
+[2025-06-06T04:05:45.321+0000] {python.py:240} INFO - Done. Returned value was: Data written to /opt/***/foundation/restcountries.csv
+[2025-06-06T04:05:45.432+0000] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2025-06-06T04:05:45.433+0000] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=my_dag, task_id=job2_structured_data, run_id=manual__2025-06-06T04:05:34.839374+00:00, execution_date=20250606T040534, start_date=20250606T040544, end_date=20250606T040545
+[2025-06-06T04:05:45.570+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-06-06T04:05:45.572+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-06-06T04:05:45.574+0000] {logging_mixin.py:190} INFO - Dag name:my_dag queued_at:2025-06-06 04:05:34.910285+00:00
+[2025-06-06T04:05:45.575+0000] {logging_mixin.py:190} INFO - Task hostname:ae7446f54277 operator:PythonOperator
+[2025-06-06T04:05:45.607+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-06T04:05:45.677+0000] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-06T04:05:45.691+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

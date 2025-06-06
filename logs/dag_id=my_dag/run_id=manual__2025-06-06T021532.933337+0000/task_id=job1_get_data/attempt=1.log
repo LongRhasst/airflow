@@ -1,0 +1,26 @@
+[2025-06-06T02:15:36.079+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-06T02:15:36.166+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_dag.job1_get_data manual__2025-06-06T02:15:32.933337+00:00 [queued]>
+[2025-06-06T02:15:36.184+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_dag.job1_get_data manual__2025-06-06T02:15:32.933337+00:00 [queued]>
+[2025-06-06T02:15:36.187+0000] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2025-06-06T02:15:36.223+0000] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): job1_get_data> on 2025-06-06 02:15:32.933337+00:00
+[2025-06-06T02:15:36.244+0000] {standard_task_runner.py:72} INFO - Started process 5822 to run task
+[2025-06-06T02:15:36.253+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'job1_get_data', 'manual__2025-06-06T02:15:32.933337+00:00', '--job-id', '60', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmp33cf9226']
+[2025-06-06T02:15:36.259+0000] {standard_task_runner.py:105} INFO - Job 60: Subtask job1_get_data
+[2025-06-06T02:15:36.389+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-06T02:15:36.559+0000] {task_command.py:467} INFO - Running <TaskInstance: my_dag.job1_get_data manual__2025-06-06T02:15:32.933337+00:00 [running]> on host d27817f09629
+[2025-06-06T02:15:36.937+0000] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_dag' AIRFLOW_CTX_TASK_ID='job1_get_data' AIRFLOW_CTX_EXECUTION_DATE='2025-06-06T02:15:32.933337+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-06T02:15:32.933337+00:00'
+[2025-06-06T02:15:36.943+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-06-06T02:15:36.945+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-06-06T02:15:36.948+0000] {logging_mixin.py:190} INFO - Current task name:job1_get_data state:running start_date:2025-06-06 02:15:36.168857+00:00
+[2025-06-06T02:15:36.950+0000] {logging_mixin.py:190} INFO - Dag name:my_dag and current dag run status:running
+[2025-06-06T02:15:36.952+0000] {taskinstance.py:740} INFO - ::endgroup::
+[2025-06-06T02:15:37.906+0000] {python.py:240} INFO - Done. Returned value was: {'status': 'unknown error'}
+[2025-06-06T02:15:38.080+0000] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2025-06-06T02:15:38.082+0000] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=my_dag, task_id=job1_get_data, run_id=manual__2025-06-06T02:15:32.933337+00:00, execution_date=20250606T021532, start_date=20250606T021536, end_date=20250606T021538
+[2025-06-06T02:15:38.271+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-06-06T02:15:38.274+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-06-06T02:15:38.276+0000] {logging_mixin.py:190} INFO - Dag name:my_dag queued_at:2025-06-06 02:15:33.024042+00:00
+[2025-06-06T02:15:38.278+0000] {logging_mixin.py:190} INFO - Task hostname:d27817f09629 operator:PythonOperator
+[2025-06-06T02:15:38.318+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-06T02:15:38.434+0000] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-06T02:15:38.447+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,30 @@
+[2025-06-06T02:37:04.221+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-06T02:37:04.501+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_dag.job4_save_df manual__2025-06-06T02:36:50.243209+00:00 [queued]>
+[2025-06-06T02:37:04.519+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_dag.job4_save_df manual__2025-06-06T02:36:50.243209+00:00 [queued]>
+[2025-06-06T02:37:04.520+0000] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2025-06-06T02:37:04.550+0000] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): job4_save_df> on 2025-06-06 02:36:50.243209+00:00
+[2025-06-06T02:37:04.563+0000] {standard_task_runner.py:72} INFO - Started process 463 to run task
+[2025-06-06T02:37:04.569+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'job4_save_df', 'manual__2025-06-06T02:36:50.243209+00:00', '--job-id', '84', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpefjumttm']
+[2025-06-06T02:37:04.572+0000] {standard_task_runner.py:105} INFO - Job 84: Subtask job4_save_df
+[2025-06-06T02:37:04.650+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-06T02:37:04.770+0000] {task_command.py:467} INFO - Running <TaskInstance: my_dag.job4_save_df manual__2025-06-06T02:36:50.243209+00:00 [running]> on host acb3199ed998
+[2025-06-06T02:37:05.000+0000] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_dag' AIRFLOW_CTX_TASK_ID='job4_save_df' AIRFLOW_CTX_EXECUTION_DATE='2025-06-06T02:36:50.243209+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-06T02:36:50.243209+00:00'
+[2025-06-06T02:37:05.003+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-06-06T02:37:05.005+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-06-06T02:37:05.006+0000] {logging_mixin.py:190} INFO - Current task name:job4_save_df state:running start_date:2025-06-06 02:37:04.503430+00:00
+[2025-06-06T02:37:05.008+0000] {logging_mixin.py:190} INFO - Dag name:my_dag and current dag run status:running
+[2025-06-06T02:37:05.009+0000] {taskinstance.py:740} INFO - ::endgroup::
+[2025-06-06T02:37:05.010+0000] {logging_mixin.py:190} INFO - Reading /opt/***/trusted/countries.csv...
+[2025-06-06T02:37:05.154+0000] {logging_mixin.py:190} INFO - Successfully saved DataFrame to table 'countries'.
+[2025-06-06T02:37:05.156+0000] {logging_mixin.py:190} INFO - Reading /opt/***/trusted/country_currency.csv...
+[2025-06-06T02:37:05.296+0000] {logging_mixin.py:190} INFO - Successfully saved DataFrame to table 'country_currency'.
+[2025-06-06T02:37:05.297+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-06-06T02:37:05.353+0000] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2025-06-06T02:37:05.356+0000] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=my_dag, task_id=job4_save_df, run_id=manual__2025-06-06T02:36:50.243209+00:00, execution_date=20250606T023650, start_date=20250606T023704, end_date=20250606T023705
+[2025-06-06T02:37:05.463+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-06-06T02:37:05.466+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-06-06T02:37:05.467+0000] {logging_mixin.py:190} INFO - Dag name:my_dag queued_at:2025-06-06 02:36:50.270162+00:00
+[2025-06-06T02:37:05.469+0000] {logging_mixin.py:190} INFO - Task hostname:acb3199ed998 operator:PythonOperator
+[2025-06-06T02:37:05.506+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-06T02:37:05.560+0000] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-06T02:37:05.564+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

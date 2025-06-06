@@ -1,0 +1,109 @@
+[2025-06-06T02:21:58.904+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-06T02:21:58.962+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_dag.job2_structured_data manual__2025-06-06T02:19:45.711378+00:00 [queued]>
+[2025-06-06T02:21:58.979+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_dag.job2_structured_data manual__2025-06-06T02:19:45.711378+00:00 [queued]>
+[2025-06-06T02:21:58.980+0000] {taskinstance.py:2884} INFO - Starting attempt 2 of 3
+[2025-06-06T02:21:59.008+0000] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): job2_structured_data> on 2025-06-06 02:19:45.711378+00:00
+[2025-06-06T02:21:59.020+0000] {standard_task_runner.py:72} INFO - Started process 2842 to run task
+[2025-06-06T02:21:59.027+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'job2_structured_data', 'manual__2025-06-06T02:19:45.711378+00:00', '--job-id', '66', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpsze5a9tz']
+[2025-06-06T02:21:59.031+0000] {standard_task_runner.py:105} INFO - Job 66: Subtask job2_structured_data
+[2025-06-06T02:21:59.115+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-06-06T02:21:59.231+0000] {task_command.py:467} INFO - Running <TaskInstance: my_dag.job2_structured_data manual__2025-06-06T02:19:45.711378+00:00 [running]> on host d718a7aa7973
+[2025-06-06T02:21:59.454+0000] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='my_dag' AIRFLOW_CTX_TASK_ID='job2_structured_data' AIRFLOW_CTX_EXECUTION_DATE='2025-06-06T02:19:45.711378+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-06T02:19:45.711378+00:00'
+[2025-06-06T02:21:59.458+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-06-06T02:21:59.460+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-06-06T02:21:59.461+0000] {logging_mixin.py:190} INFO - Current task name:job2_structured_data state:running start_date:2025-06-06 02:21:58.964855+00:00
+[2025-06-06T02:21:59.462+0000] {logging_mixin.py:190} INFO - Dag name:my_dag and current dag run status:running
+[2025-06-06T02:21:59.463+0000] {taskinstance.py:740} INFO - ::endgroup::
+[2025-06-06T02:21:59.514+0000] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/airflow/scripts/structured.py", line 11, in structured_data
+    df = pd.DataFrame(data, index = False)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/frame.py", line 733, in __init__
+    mgr = dict_to_mgr(data, index, columns, dtype=dtype, copy=copy, typ=manager)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 503, in dict_to_mgr
+    return arrays_to_mgr(arrays, columns, index, dtype=dtype, typ=typ, consolidate=copy)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 116, in arrays_to_mgr
+    index = ensure_index(index)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 7577, in ensure_index
+    return Index(index_like, copy=copy)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 525, in __new__
+    raise cls._raise_scalar_data_error(data)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 5266, in _raise_scalar_data_error
+    raise TypeError(
+TypeError: Index(...) must be called with a collection of some kind, False was passed
+[2025-06-06T02:21:59.577+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2025-06-06T02:21:59.579+0000] {logging_mixin.py:190} INFO - Task start:2025-06-06 02:21:58.964855+00:00 end:2025-06-06 02:21:59.576532+00:00 duration:0.611677
+[2025-06-06T02:21:59.581+0000] {logging_mixin.py:190} INFO - Task:<Task(PythonOperator): job2_structured_data> dag:<DAG: my_dag> dagrun:<DagRun my_dag @ 2025-06-06 02:19:45.711378+00:00: manual__2025-06-06T02:19:45.711378+00:00, state:running, queued_at: 2025-06-06 02:19:45.735230+00:00. externally triggered: True>
+[2025-06-06T02:21:59.582+0000] {logging_mixin.py:190} INFO - Failure caused by Index(...) must be called with a collection of some kind, False was passed
+[2025-06-06T02:21:59.584+0000] {taskinstance.py:1242} INFO - Marking task as UP_FOR_RETRY. dag_id=my_dag, task_id=job2_structured_data, run_id=manual__2025-06-06T02:19:45.711378+00:00, execution_date=20250606T021945, start_date=20250606T022158, end_date=20250606T022159
+[2025-06-06T02:21:59.705+0000] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2025-06-06T02:21:59.707+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 66 for task job2_structured_data (Index(...) must be called with a collection of some kind, False was passed; 2842)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/opt/airflow/scripts/structured.py", line 11, in structured_data
+    df = pd.DataFrame(data, index = False)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/frame.py", line 733, in __init__
+    mgr = dict_to_mgr(data, index, columns, dtype=dtype, copy=copy, typ=manager)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 503, in dict_to_mgr
+    return arrays_to_mgr(arrays, columns, index, dtype=dtype, typ=typ, consolidate=copy)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/internals/construction.py", line 116, in arrays_to_mgr
+    index = ensure_index(index)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 7577, in ensure_index
+    return Index(index_like, copy=copy)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 525, in __new__
+    raise cls._raise_scalar_data_error(data)
+  File "/home/airflow/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 5266, in _raise_scalar_data_error
+    raise TypeError(
+TypeError: Index(...) must be called with a collection of some kind, False was passed
+[2025-06-06T02:21:59.765+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-06-06T02:21:59.825+0000] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-06-06T02:21:59.833+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
