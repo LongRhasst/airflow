@@ -1,0 +1,112 @@
+# version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      # MYSQL_TCP_PORT: 3306
+    ports:
+      - "3307:3306"
+    networks:
+      - airflow-network
+  
+  airflow-init:
+    image: apache/airflow:2.11.0-python3.10
+    container_name: airflow-init
+    env_file:
+      - ./.env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    user: "${AIRFLOW_UID}:0"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./scripts:/opt/airflow/scripts
+      - ./plugins:/opt/airflow/plugins
+      - ./foundation:/opt/airflow/foundation
+      - ./trusted:/opt/airflow/trusted
+      - ./raw:/opt/airflow/raw
+      - ./process:/opt/airflow/process
+      - airflow-db-volume:/opt/airflow
+    entrypoint: >
+      bash -c "sleep 15 &&
+               airflow db init &&
+               airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com"
+    networks:
+      - airflow-network
+
+  webserver:
+    image: apache/airflow:2.11.0-python3.10
+    container_name: airflow-webserver
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - airflow-init
+    env_file:
+      - ./.env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    user: "${AIRFLOW_UID}:0"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./scripts:/opt/airflow/scripts
+      - ./plugins:/opt/airflow/plugins
+      - ./foundation:/opt/airflow/foundation
+      - ./trusted:/opt/airflow/trusted
+      - ./raw:/opt/airflow/raw
+      - ./process:/opt/airflow/process
+      - airflow-db-volume:/opt/airflow
+    command: airflow webserver
+    networks:
+      - airflow-network
+    
+  scheduler:
+    image: apache/airflow:2.11.0-python3.10
+    container_name: airflow-scheduler
+    restart: always
+    depends_on:
+      - webserver
+    env_file:
+      - ./.env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    user: "${AIRFLOW_UID}:0"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./scripts:/opt/airflow/scripts
+      - ./plugins:/opt/airflow/plugins
+      - ./foundation:/opt/airflow/foundation
+      - ./trusted:/opt/airflow/trusted
+      - ./raw:/opt/airflow/raw
+      - ./process:/opt/airflow/process
+      - airflow-db-volume:/opt/airflow
+    command: airflow scheduler
+    networks:
+      - airflow-network
+
+networks:
+  airflow-network:
+    name: airflow-network
+
+volumes:
+  airflow-db-volume:

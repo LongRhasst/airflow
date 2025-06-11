@@ -1,0 +1,20 @@
+[2025-06-11T07:56:39.206+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-06-11T07:56:39.223+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: my_dag.process_data manual__2025-06-11T07:56:22.121117+00:00 [queued]>
+[2025-06-11T07:56:39.235+0000] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: my_dag.process_data manual__2025-06-11T07:56:22.121117+00:00 [queued]>
+[2025-06-11T07:56:39.236+0000] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2025-06-11T07:56:39.261+0000] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): process_data> on 2025-06-11 07:56:22.121117+00:00
+[2025-06-11T07:56:39.270+0000] {standard_task_runner.py:72} INFO - Started process 86 to run task
+[2025-06-11T07:56:39.278+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'my_dag', 'process_data', 'manual__2025-06-11T07:56:22.121117+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpotzq4ife']
+[2025-06-11T07:56:39.284+0000] {standard_task_runner.py:105} INFO - Job 20: Subtask process_data
+[2025-06-11T07:56:39.341+0000] {task_command.py:467} INFO - Running <TaskInstance: my_dag.process_data manual__2025-06-11T07:56:22.121117+00:00 [running]> on host 8e241e71770c
+[2025-06-11T07:56:39.426+0000] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='my_dag' AIRFLOW_CTX_TASK_ID='process_data' AIRFLOW_CTX_EXECUTION_DATE='2025-06-11T07:56:22.121117+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-11T07:56:22.121117+00:00'
+[2025-06-11T07:56:39.429+0000] {taskinstance.py:740} INFO - ::endgroup::
+[2025-06-11T07:56:39.617+0000] {logging_mixin.py:190} INFO - <class 'pandas.core.series.Series'>
+[2025-06-11T07:56:39.697+0000] {logging_mixin.py:190} INFO - <class 'pandas.core.frame.DataFrame'>
+[2025-06-11T07:56:39.800+0000] {logging_mixin.py:190} INFO - Data successfully written to /opt/airflow/trusted/cleaned_data.csv
+[2025-06-11T07:56:39.806+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-06-11T07:56:39.813+0000] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2025-06-11T07:56:39.815+0000] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=my_dag, task_id=process_data, run_id=manual__2025-06-11T07:56:22.121117+00:00, execution_date=20250611T075622, start_date=20250611T075639, end_date=20250611T075639
+[2025-06-11T07:56:39.870+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-06-11T07:56:39.889+0000] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-11T07:56:39.898+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
